@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+if [ ! -f hadoop.tar.gz ]
+then
+	echo download Hadoop
+	curl -o hadoop.tar.gz http://www.eu.apache.org/dist/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz
+fi
+
+echo extract Hadoop
+tar xzf hadoop.tar.gz
+
+echo rename to directory hadoop
+mv hadoop-2.7.2 data/hadoop
+
+echo Hadoop master up
+cd hadoop-master && vagrant up
+
+echo Hadoop master reload
+vagrant reload
+
+for i in `seq 1 4`; do
+	echo Hadoop slave $i up
+	cd ../hadoop-slave-$i && vagrant up
+
+	echo Hadoop slave $i reload
+	vagrant reload
+done
+
+echo playbook all
+cd ..
+ansible-playbook -i hosts playbooks/all/pb.yml
+
+echo Done!
