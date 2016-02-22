@@ -1,0 +1,4 @@
+- hosts: hadoop-master
+  tasks:
+    - name: Hadoop format namenode
+      command: /home/vagrant/hadoop/bin/hdfs namenode -format

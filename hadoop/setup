@@ -31,4 +31,7 @@ echo playbook all
 cd ..
 ansible-playbook -i hosts playbooks/all/pb.yml
 
+echo format namenode
+ansible-playbook -i hosts playbooks/namenode/pb.yml
+
 echo Done!

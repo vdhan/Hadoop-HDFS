@@ -7,5 +7,5 @@ Step 4: Enable SSH for ansible
 * Reference: http://www.slideshare.net/nemo-mulodo/devops3-ansible-mosg  
 
 Step 5: Run setup (bash)  
-Step 6: connect hadoop-master (via SSH) for namenode -format and start dfs  
+Step 6: connect hadoop-master (via SSH) for starting dfs  
 Done!
